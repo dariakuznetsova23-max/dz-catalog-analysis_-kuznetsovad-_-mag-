@@ -197,6 +197,28 @@ def format_report_line(movie):
     )
 
 
+def titles_sorted_by_rating(movies):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+
+    return [movie["title"] for movie in sorted_movies]
+
+
+def top_n_by_rating(movies, n=3):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+
+    top_movies = sorted_movies[:n]
+
+    return [(movie["title"], movie["rating"]) for movie in top_movies]
+
+
 if __name__ == "__main__":
     print(f"Средняя оценка: {average_rating(movies)}")
     print(f"Статистика возраста: {catalog_age_stats(movies)}")
@@ -213,3 +235,10 @@ if __name__ == "__main__":
     print(normalize_title("silent hours"))
     print(make_slug("Silent Hours"))
     print(format_report_line(movies[7]))
+    print("\nЭтап 5. Списки:")
+    sorted_titles = titles_sorted_by_rating(movies)
+    print("Названия по убыванию рейтинга:")
+    print(sorted_titles)
+    top_movies = top_n_by_rating(movies)
+    print("Топ-3 фильма:")
+    print(top_movies)
