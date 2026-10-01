@@ -1,0 +1,22 @@
+[project]
+name = "dz-catalog-analysis-kuznetsovad-mag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "DariaK", email = "dariakuznetsova23@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+dz-catalog-analysis-kuznetsovad-mag = "dz_catalog_analysis_kuznetsovad_mag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
