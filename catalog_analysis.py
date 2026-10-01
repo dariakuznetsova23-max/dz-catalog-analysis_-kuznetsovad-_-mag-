@@ -137,7 +137,48 @@ def duration_in_hours(minutes):
     return f"{hours}ч {remaining_minutes}м"
 
 
+def print_non_comedy_movies(movies):
+    for movie in movies:
+        if "comedy" in movie["genres"]:
+            continue
+
+        print(movie["title"])
+
+
+def find_first_masterpiece(movies):
+    index = 0
+
+    while index < len(movies):
+        movie = movies[index]
+
+        if movie["rating"] > 9.0:
+            print(f"Найден шедевр: {movie['title']}, рейтинг — {movie['rating']}")
+            break
+
+        index += 1
+    else:
+        print("Шедевров не найдено")
+
+
+def count_long_movies(movies, threshold=120):
+    count = 0
+
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+
+    return count
+
+
 if __name__ == "__main__":
     print(f"Средняя оценка: {average_rating(movies)}")
     print(f"Статистика возраста: {catalog_age_stats(movies)}")
     print(f"155 минут: {duration_in_hours(155)}")
+    print("Фильмы, которые не относятся к жанру comedy:")
+    print_non_comedy_movies(movies)
+    print("\nПоиск первого фильма с рейтингом выше 9.0:")
+    find_first_masterpiece(movies)
+    print("\nПроверка каталога без шедевров:")
+    find_first_masterpiece(movies[:7])
+    long_movies_count = count_long_movies(movies)
+    print(f"\nКоличество фильмов длиннее 120 минут: {long_movies_count}")
